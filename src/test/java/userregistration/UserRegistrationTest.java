@@ -87,4 +87,20 @@ public class UserRegistrationTest {
         Assertions.assertFalse(result);
     }
 
+    @Test
+    public void givenPasswordRule2_WhenValid_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validatePasswordRule2("Password");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenPasswordRule2_WhenInvalid_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validatePasswordRule2("password");
+
+        Assertions.assertFalse(result);
+    }
+
 }
