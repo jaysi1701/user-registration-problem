@@ -135,4 +135,56 @@ public class UserRegistrationTest {
         Assertions.assertFalse(result);
     }
 
+    @Test
+    public void givenValidEmails_ShouldReturnTrue() {
+
+        Assertions.assertTrue(userRegistration.validateEmail("abc@yahoo.com"));
+
+        Assertions.assertTrue(userRegistration.validateEmail("abc-100@yahoo.com"));
+
+        Assertions.assertTrue(userRegistration.validateEmail("abc.100@yahoo.com"));
+
+        Assertions.assertTrue(userRegistration.validateEmail("abc111@abc.com"));
+
+        Assertions.assertTrue(userRegistration.validateEmail("abc-100@abc.net"));
+
+        Assertions.assertTrue(userRegistration.validateEmail("abc.100@abc.com.au"));
+
+        Assertions.assertTrue(userRegistration.validateEmail("abc@1.com"));
+
+        Assertions.assertTrue(userRegistration.validateEmail("abc@gmail.com.com"));
+
+        Assertions.assertTrue(userRegistration.validateEmail("abc+100@gmail.com"));
+    }
+
+    @Test
+    public void givenInvalidEmails_ShouldReturnFalse() {
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc@.com.my"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc123@gmail.a"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc123@.com"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc123@.com.com"));
+
+        Assertions.assertFalse(userRegistration.validateEmail(".abc@abc.com"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc()*@gmail.com"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc@%*.com"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc..2002@gmail.com"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc.@gmail.com"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc@abc@gmail.com"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc@gmail.com.1a"));
+
+        Assertions.assertFalse(userRegistration.validateEmail("abc@gmail.com.aa.au"));
+    }
+
 }
