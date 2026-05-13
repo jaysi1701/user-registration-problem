@@ -10,155 +10,83 @@ public class UserRegistrationTest {
     UserRegistration userRegistration = new UserRegistration();
 
     @Test
-    public void givenFirstName_WhenValid_ShouldReturnTrue() throws UserRegistrationException {
+    public void givenFirstName_WhenValid_ShouldReturnTrue() {
 
-        boolean result = userRegistration.validateFirstName("John");
-
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    public void givenFirstName_WhenInvalid_ShouldThrowException() {
-
-        Exception exception = Assertions.assertThrows(
-                UserRegistrationException.class,
-                () -> userRegistration.validateFirstName("jo")
-        );
-
-        Assertions.assertEquals("Invalid First Name", exception.getMessage());
-    }
-
-    @Test
-    public void givenLastName_WhenValid_ShouldReturnTrue() throws UserRegistrationException {
-
-        boolean result = userRegistration.validateLastName("Smith");
+        boolean result = userRegistration.firstNameValidator.validate("John");
 
         Assertions.assertTrue(result);
     }
 
     @Test
-    public void givenLastName_WhenInvalid_ShouldThrowException() {
+    public void givenFirstName_WhenInvalid_ShouldReturnFalse() {
 
-        Exception exception = Assertions.assertThrows(
-                UserRegistrationException.class,
-                () -> userRegistration.validateLastName("sm")
-        );
+        boolean result = userRegistration.firstNameValidator.validate("jo");
 
-        Assertions.assertEquals("Invalid Last Name", exception.getMessage());
+        Assertions.assertFalse(result);
     }
 
     @Test
-    public void givenEmail_WhenValid_ShouldReturnTrue() throws UserRegistrationException {
+    public void givenLastName_WhenValid_ShouldReturnTrue() {
 
-        boolean result = userRegistration.validateEmail("abc@yahoo.com");
+        boolean result = userRegistration.lastNameValidator.validate("Smith");
 
         Assertions.assertTrue(result);
     }
 
     @Test
-    public void givenEmail_WhenInvalid_ShouldThrowException() {
+    public void givenLastName_WhenInvalid_ShouldReturnFalse() {
 
-        Exception exception = Assertions.assertThrows(
-                UserRegistrationException.class,
-                () -> userRegistration.validateEmail("abc@.com")
-        );
+        boolean result = userRegistration.lastNameValidator.validate("sm");
 
-        Assertions.assertEquals("Invalid Email", exception.getMessage());
+        Assertions.assertFalse(result);
     }
 
     @Test
-    public void givenMobile_WhenValid_ShouldReturnTrue() throws UserRegistrationException {
+    public void givenEmail_WhenValid_ShouldReturnTrue() {
 
-        boolean result = userRegistration.validateMobileNumber("91 9919819801");
+        boolean result = userRegistration.emailValidator.validate("abc@yahoo.com");
 
         Assertions.assertTrue(result);
     }
 
     @Test
-    public void givenMobile_WhenInvalid_ShouldThrowException() {
+    public void givenEmail_WhenInvalid_ShouldReturnFalse() {
 
-        Exception exception = Assertions.assertThrows(
-                UserRegistrationException.class,
-                () -> userRegistration.validateMobileNumber("919919819801")
-        );
+        boolean result = userRegistration.emailValidator.validate("abc@.com");
 
-        Assertions.assertEquals("Invalid Mobile Number", exception.getMessage());
+        Assertions.assertFalse(result);
     }
 
     @Test
-    public void givenPasswordRule1_WhenValid_ShouldReturnTrue() throws UserRegistrationException {
+    public void givenMobile_WhenValid_ShouldReturnTrue() {
 
-        boolean result = userRegistration.validatePasswordRule1("Password");
+        boolean result = userRegistration.mobileValidator.validate("91 9919819801");
 
         Assertions.assertTrue(result);
     }
 
     @Test
-    public void givenPasswordRule1_WhenInvalid_ShouldThrowException() {
+    public void givenMobile_WhenInvalid_ShouldReturnFalse() {
 
-        Exception exception = Assertions.assertThrows(
-                UserRegistrationException.class,
-                () -> userRegistration.validatePasswordRule1("Pass")
-        );
+        boolean result = userRegistration.mobileValidator.validate("919919819801");
 
-        Assertions.assertEquals("Invalid Password Rule1", exception.getMessage());
+        Assertions.assertFalse(result);
     }
 
     @Test
-    public void givenPasswordRule2_WhenValid_ShouldReturnTrue() throws UserRegistrationException {
+    public void givenPassword_WhenValid_ShouldReturnTrue() {
 
-        boolean result = userRegistration.validatePasswordRule2("Password");
+        boolean result = userRegistration.passwordValidator.validate("Pass@123");
 
         Assertions.assertTrue(result);
     }
 
     @Test
-    public void givenPasswordRule2_WhenInvalid_ShouldThrowException() {
+    public void givenPassword_WhenInvalid_ShouldReturnFalse() {
 
-        Exception exception = Assertions.assertThrows(
-                UserRegistrationException.class,
-                () -> userRegistration.validatePasswordRule2("password")
-        );
+        boolean result = userRegistration.passwordValidator.validate("Pass@@123");
 
-        Assertions.assertEquals("Invalid Password Rule2", exception.getMessage());
-    }
-
-    @Test
-    public void givenPasswordRule3_WhenValid_ShouldReturnTrue() throws UserRegistrationException {
-
-        boolean result = userRegistration.validatePasswordRule3("Password1");
-
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    public void givenPasswordRule3_WhenInvalid_ShouldThrowException() {
-
-        Exception exception = Assertions.assertThrows(
-                UserRegistrationException.class,
-                () -> userRegistration.validatePasswordRule3("Password")
-        );
-
-        Assertions.assertEquals("Invalid Password Rule3", exception.getMessage());
-    }
-
-    @Test
-    public void givenPasswordRule4_WhenValid_ShouldReturnTrue() throws UserRegistrationException {
-
-        boolean result = userRegistration.validatePasswordRule4("Pass@123");
-
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    public void givenPasswordRule4_WhenInvalid_ShouldThrowException() {
-
-        Exception exception = Assertions.assertThrows(
-                UserRegistrationException.class,
-                () -> userRegistration.validatePasswordRule4("Pass@@123")
-        );
-
-        Assertions.assertEquals("Invalid Password", exception.getMessage());
+        Assertions.assertFalse(result);
     }
 
     @ParameterizedTest
@@ -173,9 +101,9 @@ public class UserRegistrationTest {
             "abc@gmail.com.com",
             "abc+100@gmail.com"
     })
-    public void givenMultipleValidEmails_ShouldReturnTrue(String email) throws UserRegistrationException {
+    public void givenMultipleValidEmails_ShouldReturnTrue(String email) {
 
-        boolean result = userRegistration.validateEmail(email);
+        boolean result = userRegistration.emailValidator.validate(email);
 
         Assertions.assertTrue(result);
     }
@@ -188,11 +116,10 @@ public class UserRegistrationTest {
             "abc123@.com",
             "abc123@.com.com"
     })
-    public void givenMultipleInvalidEmails_ShouldThrowException(String email) {
+    public void givenMultipleInvalidEmails_ShouldReturnFalse(String email) {
 
-        Assertions.assertThrows(
-                UserRegistrationException.class,
-                () -> userRegistration.validateEmail(email)
-        );
+        boolean result = userRegistration.emailValidator.validate(email);
+
+        Assertions.assertFalse(result);
     }
 }
