@@ -39,4 +39,20 @@ public class UserRegistrationTest {
         Assertions.assertFalse(result);
     }
 
+    @Test
+    public void givenEmail_WhenValid_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validateEmail("abc.xyz@bl.co.in");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenEmail_WhenInvalid_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validateEmail("abc@.com");
+
+        Assertions.assertFalse(result);
+    }
+
 }
