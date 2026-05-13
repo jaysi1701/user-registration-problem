@@ -119,4 +119,20 @@ public class UserRegistrationTest {
         Assertions.assertFalse(result);
     }
 
+    @Test
+    public void givenPasswordRule4_WhenValid_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validatePasswordRule4("Pass@123");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenPasswordRule4_WhenInvalid_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validatePasswordRule4("Pass@@123");
+
+        Assertions.assertFalse(result);
+    }
+
 }
