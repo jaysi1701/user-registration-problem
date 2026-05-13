@@ -55,4 +55,20 @@ public class UserRegistrationTest {
         Assertions.assertFalse(result);
     }
 
+    @Test
+    public void givenMobileNumber_WhenValid_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validateMobileNumber("91 9919819801");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenMobileNumber_WhenInvalid_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validateMobileNumber("919919819801");
+
+        Assertions.assertFalse(result);
+    }
+
 }

@@ -23,4 +23,11 @@ public class UserRegistration {
         return email.matches(regex);
     }
 
+    public boolean validateMobileNumber(String mobileNumber) {
+
+        String regex = "^[0-9]{2}\\s[0-9]{10}$";
+
+        return mobileNumber.matches(regex);
+    }
+
 }
