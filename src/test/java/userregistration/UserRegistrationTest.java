@@ -22,4 +22,21 @@ public class UserRegistrationTest {
 
         Assertions.assertFalse(result);
     }
+
+    @Test
+    public void givenLastName_WhenValid_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validateLastName("Smith");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenLastName_WhenInvalid_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validateLastName("sm");
+
+        Assertions.assertFalse(result);
+    }
+
 }
