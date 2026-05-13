@@ -30,4 +30,11 @@ public class UserRegistration {
         return mobileNumber.matches(regex);
     }
 
+    public boolean validatePasswordRule1(String password) {
+
+        String regex = "^.{8,}$";
+
+        return password.matches(regex);
+    }
+
 }
