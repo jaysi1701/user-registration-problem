@@ -187,4 +187,84 @@ public class UserRegistrationTest {
         Assertions.assertFalse(userRegistration.validateEmail("abc@gmail.com.aa.au"));
     }
 
+    @Test
+    public void givenFirstName_WhenProper_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validateFirstName("John");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenFirstName_WhenImproper_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validateFirstName("jo");
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    public void givenLastName_WhenProper_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validateLastName("Smith");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenLastName_WhenImproper_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validateLastName("sm");
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    public void givenEmail_WhenProper_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validateEmail("abc@yahoo.com");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenEmail_WhenImproper_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validateEmail("abc@.com");
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    public void givenMobile_WhenProper_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validateMobileNumber("91 9919819801");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenMobile_WhenImproper_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validateMobileNumber("919919819801");
+
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    public void givenPassword_WhenProper_ShouldReturnTrue() {
+
+        boolean result = userRegistration.validatePasswordRule4("Pass@123");
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void givenPassword_WhenImproper_ShouldReturnFalse() {
+
+        boolean result = userRegistration.validatePasswordRule4("pass");
+
+        Assertions.assertFalse(result);
+    }
+
 }
