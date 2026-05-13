@@ -2,60 +2,95 @@ package userregistration;
 
 public class UserRegistration {
 
-    public boolean validateFirstName(String firstName) {
+    public boolean validateFirstName(String firstName) throws UserRegistrationException {
 
         String regex = "^[A-Z][a-z]{2,}$";
 
-        return firstName.matches(regex);
+        if (firstName.matches(regex)) {
+            return true;
+        }
+
+        throw new UserRegistrationException("Invalid First Name");
     }
 
-    public boolean validateLastName(String lastName) {
+    public boolean validateLastName(String lastName) throws UserRegistrationException {
 
         String regex = "^[A-Z][a-z]{2,}$";
 
-        return lastName.matches(regex);
+        if (lastName.matches(regex)) {
+            return true;
+        }
+
+        throw new UserRegistrationException("Invalid Last Name");
     }
 
-    public boolean validateEmail(String email) {
 
-        String regex = "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}(\\.[a-zA-Z]{2,})?$";
+    public boolean validateEmail(String email) throws UserRegistrationException {
 
-        return email.matches(regex);
+        String regex = "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+(\\.[a-zA-Z]{2,})+$";
+
+        if (email.matches(regex)) {
+            return true;
+        }
+
+        throw new UserRegistrationException("Invalid Email");
     }
 
-    public boolean validateMobileNumber(String mobileNumber) {
+
+    public boolean validateMobileNumber(String mobileNumber) throws UserRegistrationException {
 
         String regex = "^[0-9]{2}\\s[0-9]{10}$";
 
-        return mobileNumber.matches(regex);
+        if (mobileNumber.matches(regex)) {
+            return true;
+        }
+
+        throw new UserRegistrationException("Invalid Mobile Number");
     }
 
-    public boolean validatePasswordRule1(String password) {
+
+    public boolean validatePasswordRule1(String password) throws UserRegistrationException {
 
         String regex = "^.{8,}$";
 
-        return password.matches(regex);
+        if (password.matches(regex)) {
+            return true;
+        }
+
+        throw new UserRegistrationException("Invalid Password Rule1");
     }
 
-    public boolean validatePasswordRule2(String password) {
+    public boolean validatePasswordRule2(String password) throws UserRegistrationException {
 
         String regex = "^(?=.*[A-Z]).{8,}$";
 
-        return password.matches(regex);
+        if (password.matches(regex)) {
+            return true;
+        }
+
+        throw new UserRegistrationException("Invalid Password Rule2");
     }
 
-    public boolean validatePasswordRule3(String password) {
+    public boolean validatePasswordRule3(String password) throws UserRegistrationException {
 
         String regex = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
 
-        return password.matches(regex);
+        if (password.matches(regex)) {
+            return true;
+        }
+
+        throw new UserRegistrationException("Invalid Password Rule3");
     }
 
-    public boolean validatePasswordRule4(String password) {
+    public boolean validatePasswordRule4(String password) throws UserRegistrationException {
 
         String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=[^@#$%^&+=]*[@#$%^&+=][^@#$%^&+=]*$).{8,}$";
 
-        return password.matches(regex);
+        if (password.matches(regex)) {
+            return true;
+        }
+
+        throw new UserRegistrationException("Invalid Password");
     }
 
 }
